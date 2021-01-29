@@ -12,6 +12,7 @@ void main() {
     print('Equal!');
   } else {
     print('Not equal!');
+    io.exit(1);
   }
 }
 
