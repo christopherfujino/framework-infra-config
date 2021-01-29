@@ -1,0 +1,8 @@
+name: flutter_release_config
+version: 0.1.0
+description: Testing validating try_builders.json with a protobuf.
+environment:
+  sdk: '>=2.11.0 < 3.0.0'
+dependencies:
+  protobuf: 1.1.0
+  yaml: 2.2.1
