@@ -1,41 +1,30 @@
 import 'dart:convert' show jsonDecode;
 import 'dart:io' as io;
 
-import 'package:file/file.dart';
-import 'package:file/local.dart';
 import 'package:protobuf/protobuf.dart' show GeneratedMessage;
 import 'package:yaml/yaml.dart' show loadYaml;
 
-import './src/common.dart' show getCurrentScript;
 import './src/ci_config.pb.dart';
 
-void main() {
-  const FileSystem fileSystem = LocalFileSystem();
-  final String libPath = getCurrentScript().parent.path;
-
+void run({
+  String tryBuildersPath,
+  String prodBuildersPath,
+  String luciConfigPath,
+}) {
   final TryBuildersJson tryBuildersJson = TryBuildersJson();
   parseJson(
-    fileSystem.path.join(
-      libPath,
-      'try_builders.json',
-    ),
+    tryBuildersPath,
     tryBuildersJson,
   );
   final ProdBuildersJson prodBuildersJson = ProdBuildersJson();
   parseJson(
-    fileSystem.path.join(
-      libPath,
-      'prod_builders.json',
-    ),
+    prodBuildersPath,
     prodBuildersJson,
   );
 
   final LuciConfigYaml configYaml = LuciConfigYaml();
   parseYaml(
-    fileSystem.path.join(
-      libPath,
-      'luci.config.yaml',
-    ),
+    luciConfigPath,
     configYaml,
   );
 
